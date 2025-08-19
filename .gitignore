@@ -1,0 +1,15 @@
+﻿# node
+node_modules/
+dist/
+.vite/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# env
+.env
+
+# uploads (원하면 커밋 제외)
+backend/uploads/
