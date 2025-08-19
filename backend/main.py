@@ -11,15 +11,15 @@ import logging
 
 from pydantic import BaseModel
 
-from extract.extractor import extract_all, extract_to_txt
-from evaluate_instant import router as eval_instant_router
+from backend.extract.extractor import extract_all, extract_to_txt
+from backend.evaluate_instant import router as eval_instant_router
 
-from config import (
+from backend.config import (
     FRONTEND_ORIGINS, UPLOAD_DIR, ALLOWED_EXTENSIONS, MAX_UPLOAD_MB  # MAX_UPLOAD_MB는 필요 시 사용
 )
 
-from embedding.index_builder import append_texts  # SQLite 메타 + 배치 임베딩
-from embedding.metadata_store import save_metadata, get_metadata_by_id, load_all_metadata
+from backend.embedding.index_builder import append_texts  # SQLite 메타 + 배치 임베딩
+from backend.embedding.metadata_store import save_metadata, get_metadata_by_id, load_all_metadata
 
 logger = logging.getLogger(__name__)
 

@@ -3,7 +3,7 @@ import os
 import json
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
-from config import METADATA_PATH
+from backend.config import METADATA_PATH
 
 def _ensure_dir():
     os.makedirs(os.path.dirname(METADATA_PATH), exist_ok=True)

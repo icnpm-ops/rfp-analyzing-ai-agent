@@ -13,7 +13,7 @@ import faiss
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from config import INDEX_PATH, TEXTS_PATH, EMBED_MODEL
+from backend.config import INDEX_PATH, TEXTS_PATH, EMBED_MODEL
 
 # -----------------------------
 # 로깅

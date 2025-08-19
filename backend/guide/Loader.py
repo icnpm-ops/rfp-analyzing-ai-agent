@@ -1,5 +1,5 @@
 import os
-from config import GUIDE_REFERENCE_PATH
+from backend.config import GUIDE_REFERENCE_PATH
 
 _guide_cache = None # 캐시용
 

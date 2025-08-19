@@ -14,10 +14,10 @@ from PIL import Image  # noqa: F401 (미래 전처리용)
 from docx import Document
 import pytesseract
 
-from extract.text_parser import extract_text_from_docx, extract_text_from_pdf
-from extract.ocr_parser import extract_text_from_image
-from extract.utils import get_file_type
-from extract.vlm_parser import vlm_extract_caption_bytes  # ⬅️ VLM 캡션 함수 사용
+from backend.extract.text_parser import extract_text_from_docx, extract_text_from_pdf
+from backend.extract.ocr_parser import extract_text_from_image
+from backend.extract.utils import get_file_type
+from backend.extract.vlm_parser import vlm_extract_caption_bytes  # ⬅️ VLM 캡션 함수 사용
 
 SAFE_NAME_RE = re.compile(r"[^A-Za-z0-9가-힣._-]+")
 
