@@ -1,4 +1,22 @@
 # backend/main.py
+import logging
+from fastapi import FastAPI
+
+log = logging.getLogger("uvicorn.error")
+
+app = FastAPI(title="RFP Analyzer API")
+
+# 임포트 시 예외를 바로 로그에 남겨 원인 파악
+try:
+    from backend.evaluate_instant import router as eval_router  # 예시
+    app.include_router(eval_router, prefix="/evaluate", tags=["evaluate"])
+except Exception as e:
+    log.exception("Router import failed: %s", e)
+
+@app.get("/healthz")
+def health():
+    return {"ok": True}
+
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict
