@@ -3,10 +3,34 @@
 import os
 from pathlib import Path
 # 이 config.py가 있는 폴더 기준
+
+# backend/config.py
+import os
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# 영속 디렉토리(볼륨 마운트 대상). 없으면 /data, 더 없으면 BASE_DIR/persist
+PERSIST_DIR = os.getenv("PERSIST_DIR", "/data")
+if not os.path.isdir(PERSIST_DIR) or not os.access(PERSIST_DIR, os.W_OK):
+    PERSIST_DIR = os.path.join(BASE_DIR, "persist")
+os.makedirs(PERSIST_DIR, exist_ok=True)
+
+# 임베딩/인덱스 파일은 영속 디렉토리에
+INDEX_PATH = os.path.join(PERSIST_DIR, "faiss.index")
+TEXTS_PATH = os.path.join(PERSIST_DIR, "texts.pkl")
+
+# 업로드 디렉토리도 영속화
+UPLOAD_DIR = os.path.join(PERSIST_DIR, "uploads")
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+# 기타 필요 경로…
+GUIDE_REFERENCE_PATH = os.path.join(BASE_DIR, "guide", "guide_reference.txt")  # 읽기 전용이면 코드 디렉토리 유지
+METADATA_PATH = os.path.join(PERSIST_DIR, "metadata.json")
+
+# 모델명 등 상수
+EMBED_MODEL = "text-embedding-3-small"
+
 BACKEND_DIR = Path(__file__).resolve().parent
-GUIDE_DEFAULT_PATH = str(BACKEND_DIR / "guide" / "guide_reference.txt")
 
 # OpenAI 모델명 (고정)
 EMBED_MODEL = "text-embedding-3-small"
@@ -18,19 +42,6 @@ REPORT_DIR = os.getenv("REPORT_DIR", os.path.join(os.getcwd(), "storage", "repor
 # GPT 모델 (원하면 .env로 바꾸세요)
 EVAL_MODEL = os.getenv("EVAL_MODEL", "gpt-4o")
 
-# FAISS 인덱스 및 텍스트 리스트 경로
-INDEX_PATH = os.path.join(BASE_DIR, "embedding", "faiss.index")
-TEXTS_PATH = os.path.join(BASE_DIR, "embedding", "texts.pkl")
-
-# backend/config.py
-METADATA_PATH = os.path.join(BASE_DIR, "metadata", "metadata.json")
-
-# Guide 기준 문서
-GUIDE_REFERENCE_PATH = os.path.join(BASE_DIR, "guide", "guide_reference.txt")
-
-# 업로드 설정
-UPLOAD_DIR = os.path.join(BASE_DIR,"uploads")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 ALLOWED_EXTENSIONS = (".pdf", ".docx") # 필요시 이미지 확장자 추가 가능
 MAX_UPLOAD_MB = 500 # 필요시 조정
@@ -49,7 +60,7 @@ OCR_THREAD_WORKERS = 2        # OCR 병렬도(윈도우 2~3 권장)
 
 
 # --- 텍스트 캐시/정책 ---
-TEXT_CACHE_DIR = os.path.join(BASE_DIR, "text_cache")
+TEXT_CACHE_DIR = os.path.join(PERSIST_DIR, "text_cache")
 os.makedirs(TEXT_CACHE_DIR, exist_ok=True)
 
 # 원본 삭제 여부(기본: False)
