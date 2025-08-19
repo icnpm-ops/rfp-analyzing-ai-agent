@@ -16,7 +16,7 @@ except Exception as e:
 @app.get("/healthz")
 def health():
     return {"ok": True}
-
+"""
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict
@@ -322,3 +322,4 @@ async def analyze(req: AnalyzeRequest):
 @app.get("/_debug/metadata")
 async def debug_metadata():
     return load_all_metadata()
+"""
