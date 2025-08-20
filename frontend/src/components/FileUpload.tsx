@@ -4,7 +4,22 @@ import type { DragEvent, ChangeEvent } from "react";
 import axios, { type AxiosProgressEvent } from "axios";
 import AnalyzeResult, { type AnalyzeResponse } from "./AnalyzeResult";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
+const getApiBaseUrl = () => {
+  // 프로덕션 환경에서는 반드시 환경변수 사용
+  if (import.meta.env.PROD && import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+  
+  // 개발 환경에서만 localhost 허용
+  if (import.meta.env.DEV) {
+    return import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
+  }
+  
+  // 환경변수가 설정되지 않은 프로덕션에서는 오류 표시
+  throw new Error("API_BASE_URL이 설정되지 않았습니다.");
+};
+
+const API_BASE = getApiBaseUrl();
 const ACCEPTED_EXT = [".pdf", ".docx"];
 const MAX_BYTES = 20 * 1024 * 1024;
 
