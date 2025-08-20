@@ -29,7 +29,12 @@ app.include_router(eval_instant_router, prefix="/evaluate", tags=["evaluate"])
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=FRONTEND_ORIGINS,
+    allow_origins=[
+        "https://rfp-analyzer.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:8000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
