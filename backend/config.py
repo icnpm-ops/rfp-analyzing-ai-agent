@@ -46,10 +46,11 @@ EVAL_MODEL = os.getenv("EVAL_MODEL", "gpt-4o")
 ALLOWED_EXTENSIONS = (".pdf", ".docx") # 필요시 이미지 확장자 추가 가능
 MAX_UPLOAD_MB = 500 # 필요시 조정
 
-# CORS (프론트 개발 서버 도메인/포트)
 FRONTEND_ORIGINS = [
-    "http://localhost:5173",  # Vite 기본 포트
-    "http://localhost:3000",  # CRA 기본 포트
+    "http://localhost:3000",
+    "http://localhost:5173",  # Vite dev server
+    "https://localhost:3000", 
+    "https://*.vercel.app",   # 모든 Vercel 앱
 ]
 
 # backend/config.py
