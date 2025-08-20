@@ -197,8 +197,47 @@ const onProcess = async () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto w-full max-w-4xl px-4 py-10">
+        {/* ProposalIQ Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            🚀 ProposalIQ
+          </h1>
+          <h2 className="text-xl font-semibold text-blue-600 mb-6">
+            Elevate Your Grant Proposal Game!
+          </h2>
+          <div className="bg-white rounded-xl shadow-sm border p-6 mb-8 text-left">
+            <p className="text-gray-700 mb-4">
+              ProposalIQ is a structured framework designed to enhance researchers' grant-writing skills through three key modules:
+            </p>
+            <div className="space-y-2 mb-4">
+              <div className="flex items-start">
+                <span className="text-blue-500 mr-2">📌</span>
+                <span><strong>ProposalCQ (Capacity Building)</strong> – Develop essential skills for structuring compelling research proposals.</span>
+              </div>
+              <div className="flex items-start">
+                <span className="text-blue-500 mr-2">📌</span>
+                <span><strong>ProposalRQ (Reviewership)</strong> – Gain insights from a reviewer's perspective to strengthen proposal quality.</span>
+              </div>
+              <div className="flex items-start">
+                <span className="text-blue-500 mr-2">📌</span>
+                <span><strong>ProposalWQ (Grantsmanship)</strong> – Master strategic grant-writing techniques to maximize funding success.</span>
+              </div>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 mb-4">
+              <span className="flex items-center">🔹 Expert training</span>
+              <span className="flex items-center">🔹 Peer review insights</span>
+              <span className="flex items-center">🔹 Proven funding strategies</span>
+            </div>
+            <div className="text-center">
+              <p className="text-lg font-medium text-gray-900">
+                🔍 Enhance Your Proposals. Secure More Grants. Make a Greater Impact.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-semibold">RFP · 제안서 자동 분석</h1>
+          <h3 className="text-2xl font-semibold">RFP · 제안서 자동 분석</h3>
           <p className="mt-2 text-sm text-gray-600">
             왼쪽은 <span className="font-medium">RFP</span>, 오른쪽은 <span className="font-medium">제안서(초안)</span>을 업로드하세요.
           </p>
