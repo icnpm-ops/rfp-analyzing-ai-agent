@@ -4,7 +4,7 @@ import type { DragEvent, ChangeEvent } from "react";
 import axios, { type AxiosProgressEvent } from "axios";
 import AnalyzeResult, { type AnalyzeResponse } from "./AnalyzeResult";
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
 const ACCEPTED_EXT = [".pdf", ".docx"];
 const MAX_BYTES = 20 * 1024 * 1024;
 
