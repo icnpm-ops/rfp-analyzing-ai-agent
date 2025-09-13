@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://rfp-analyzer-production.up.railway.app';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://web-production-2a58.up.railway.app/';
 
 export async function pingBackend() {
   const res = await fetch(`${API_BASE_URL}/`);
