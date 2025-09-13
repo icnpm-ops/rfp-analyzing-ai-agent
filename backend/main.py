@@ -27,20 +27,25 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 app.include_router(eval_instant_router, prefix="/evaluate", tags=["evaluate"])
 
+app = FastAPI()
+# 프리뷰/프로덕션 vercel 모두 허용 + 로컬 개발
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://localhost:8000",
+    "https://rfp-analyzer.vercel.app",            # 커스텀 프로덕션(있다면)
+    "https://rfp-analyzing-ai-agent.vercel.app",  # 프로덕션
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://rfp-analyzer.vercel.app",
-        "https://rfp-analyzing-ai-agent.vercel.app",
-        "https://rfp-analyzing-ai-agent-ctk0fanul-icnpm-ops-projects.vercel.app",
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "http://localhost:8000",
-    ],
-    allow_credentials=True,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"^https://([a-z0-9-]+\.)*vercel\.app$",  # ★ 프리뷰 전체
     allow_methods=["*"],
     allow_headers=["*"],
+    allow_credentials=False,   # 쿠키 인증 안 쓰면 False 권장(‘*’과 함께 쓰기 쉬움)
 )
+
 
 # ---------------- Upload helpers ----------------
 def _validate_file(file: UploadFile):
