@@ -27,7 +27,6 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 app.include_router(eval_instant_router, prefix="/evaluate", tags=["evaluate"])
 
-app = FastAPI()
 # 프리뷰/프로덕션 vercel 모두 허용 + 로컬 개발
 ALLOWED_ORIGINS = [
     "http://localhost:3000",
