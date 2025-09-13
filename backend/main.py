@@ -32,6 +32,7 @@ app.add_middleware(
     allow_origins=[
         "https://rfp-analyzer.vercel.app",
         "https://rfp-analyzing-ai-agent.vercel.app",
+        "https://rfp-analyzing-ai-agent-ctk0fanul-icnpm-ops-projects.vercel.app",
         "http://localhost:3000",
         "http://localhost:5173",
         "http://localhost:8000",
